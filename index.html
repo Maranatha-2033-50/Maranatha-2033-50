@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>David Chang | BTL & IMC Marketing Specialist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1a2b4a;
+      --gold:   #c8973a;
+      --light:  #f7f5f2;
+      --white:  #ffffff;
+      --gray:   #6b7280;
+      --border: #e5e0d8;
+      --accent: #2a4a7f;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light);
+      color: var(--navy);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--navy); letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+      color: var(--gray); text-decoration: none; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 60%, #1e3a6e 100%);
+      padding: 100px 8% 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -30%; right: -10%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,151,58,0.15) 0%, transparent 70%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -20%; left: 20%;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,151,58,0.08) 0%, transparent 70%);
+    }
+    .hero-inner {
+      max-width: 800px;
+      position: relative; z-index: 1;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 700; line-height: 1.05;
+      color: var(--white); margin-bottom: 0.5rem;
+    }
+    .hero-name-ko {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: rgba(255,255,255,0.5); font-weight: 400;
+      margin-bottom: 1.5rem; display: block;
+    }
+    .hero-title {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 300; color: rgba(255,255,255,0.85);
+      margin-bottom: 1rem; letter-spacing: 0.05em;
+    }
+    .hero-desc {
+      font-size: 1rem; color: rgba(255,255,255,0.65);
+      max-width: 560px; margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem; border-radius: 4px;
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      transition: all 0.25s; cursor: pointer;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--white);
+      border: 2px solid var(--gold);
+    }
+    .btn-gold:hover { background: #b8862f; border-color: #b8862f; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline:hover { border-color: var(--white); transform: translateY(-2px); }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 8%;
+      display: flex; justify-content: center; gap: 0;
+    }
+    .stat-item {
+      text-align: center; flex: 1; max-width: 200px;
+      padding: 0 2rem;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem; color: var(--gray);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-top: 0.4rem;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 90px 8%; }
+    .section-tag {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; color: var(--navy);
+      margin-bottom: 1rem; line-height: 1.2;
+    }
+    .section-divider {
+      width: 50px; height: 3px; background: var(--gold);
+      margin-bottom: 3rem;
+    }
+
+    /* ── COMPETENCIES ── */
+    #competencies { background: var(--white); }
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .comp-card {
+      padding: 2rem; border: 1px solid var(--border);
+      border-radius: 8px; background: var(--light);
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .comp-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 4px; height: 0;
+      background: var(--gold);
+      transition: height 0.3s;
+    }
+    .comp-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(26,43,74,0.1); }
+    .comp-card:hover::before { height: 100%; }
+    .comp-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .comp-title {
+      font-weight: 700; font-size: 1rem;
+      color: var(--navy); margin-bottom: 0.6rem;
+    }
+    .comp-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.7; }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--light); }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 8px; bottom: 0;
+      width: 2px; background: var(--border);
+    }
+    .tl-item {
+      padding-left: 2.5rem; margin-bottom: 3.5rem;
+      position: relative;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute; left: -6px; top: 8px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--gold); border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+    .tl-period {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 0.3rem;
+    }
+    .tl-company {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+    .tl-role {
+      font-size: 0.9rem; font-weight: 500; color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .tl-body { font-size: 0.88rem; color: var(--gray); }
+    .tl-highlights {
+      list-style: none; margin-top: 0.8rem;
+    }
+    .tl-highlights li {
+      position: relative; padding-left: 1.2rem;
+      margin-bottom: 0.5rem; font-size: 0.88rem; color: var(--gray);
+    }
+    .tl-highlights li::before {
+      content: '▸';
+      position: absolute; left: 0; color: var(--gold);
+    }
+    .tag-wrap { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .tag {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em;
+      padding: 0.3rem 0.75rem; border-radius: 20px;
+      background: rgba(200,151,58,0.12); color: var(--gold);
+      border: 1px solid rgba(200,151,58,0.3);
+    }
+    .achievement {
+      background: var(--white); border-left: 4px solid var(--gold);
+      border-radius: 0 6px 6px 0; padding: 0.8rem 1rem;
+      margin-top: 0.8rem; font-size: 0.85rem; color: var(--navy);
+      font-weight: 500;
+    }
+    .achievement strong { color: var(--gold); }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--white); }
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .proj-card {
+      border: 1px solid var(--border); border-radius: 10px;
+      overflow: hidden; background: var(--light);
+      transition: all 0.3s;
+    }
+    .proj-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(26,43,74,0.12); }
+    .proj-header {
+      padding: 1.5rem; background: var(--navy);
+      display: flex; align-items: flex-start; justify-content: space-between;
+    }
+    .proj-brand {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem;
+    }
+    .proj-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--white);
+    }
+    .proj-icon { font-size: 1.8rem; opacity: 0.7; }
+    .proj-body { padding: 1.5rem; }
+    .proj-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 1rem; }
+    .proj-kpi {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .kpi-badge {
+      font-size: 0.75rem; font-weight: 600;
+      padding: 0.4rem 0.8rem; border-radius: 4px;
+      background: rgba(26,43,74,0.07); color: var(--navy);
+    }
+
+    /* ── EDUCATION & MISC ── */
+    #education { background: var(--light); }
+    .edu-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    }
+    @media (max-width: 700px) { .edu-grid { grid-template-columns: 1fr; } }
+    .edu-card {
+      padding: 2rem; background: var(--white);
+      border: 1px solid var(--border); border-radius: 8px;
+    }
+    .edu-year {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 0.4rem;
+    }
+    .edu-school {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+    .edu-major { font-size: 0.9rem; color: var(--gray); }
+
+    .misc-list { list-style: none; }
+    .misc-list li {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 0.9rem 0; border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+    .misc-list li:last-child { border-bottom: none; }
+    .misc-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .misc-text strong { color: var(--navy); display: block; margin-bottom: 0.1rem; }
+    .misc-text span { color: var(--gray); font-size: 0.82rem; }
+
+    /* ── AWARDS ── */
+    .awards-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem; margin-top: 0;
+    }
+    .award-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.5rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .award-medal { font-size: 2rem; flex-shrink: 0; }
+    .award-title { font-weight: 700; font-size: 0.9rem; color: var(--navy); margin-bottom: 0.2rem; }
+    .award-meta { font-size: 0.78rem; color: var(--gray); }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--navy);
+      text-align: center; padding: 80px 8%;
+    }
+    #contact .section-tag { color: var(--gold); }
+    #contact .section-title { color: var(--white); }
+    .contact-desc { color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto 2.5rem; }
+    .contact-links {
+      display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;
+    }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.9rem 2rem; border-radius: 6px;
+      font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; transition: all 0.25s;
+    }
+    .contact-btn-li {
+      background: #0077b5; color: var(--white);
+    }
+    .contact-btn-li:hover { background: #005f91; transform: translateY(-2px); }
+    .contact-btn-mail {
+      background: rgba(255,255,255,0.1); color: var(--white);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .contact-btn-mail:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 1.5rem;
+      font-size: 0.78rem; color: var(--gray);
+      background: var(--white); border-top: 1px solid var(--border);
+    }
+
+    /* ── SCROLL FADE ── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 5%; }
+      .nav-links { display: none; }
+      .stats-bar { flex-wrap: wrap; gap: 1rem; }
+      .stat-item { border-right: none; flex: 1 1 40%; }
+      section { padding: 60px 5%; }
+      .hero { padding: 100px 5% 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">David <span>Chang</span></div>
+  <ul class="nav-links">
+    <li><a href="#competencies">역량</a></li>
+    <li><a href="#experience">경력</a></li>
+    <li><a href="#projects">프로젝트</a></li>
+    <li><a href="#education">학력</a></li>
+    <li><a href="#contact">연락처</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">BTL & IMC Marketing Specialist</p>
+    <h1 class="hero-name">David Chang</h1>
+    <span class="hero-name-ko">장 호 준</span>
+    <p class="hero-title">Account Executive · 글로벌 브랜드 IMC 기획 전문가</p>
+    <p class="hero-desc">
+      Chevrolet · GMC · Cadillac · Mercedes-Benz · Starbucks RTD 등
+      국내외 글로벌 브랜드의 BTL 캠페인을 기획하고 이끌어온
+      오프라인 마케팅 커뮤니케이션 전문가.
+    </p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn btn-gold">경력 보기</a>
+      <a href="https://www.linkedin.com/in/davidhojunchang/" target="_blank" class="btn btn-outline">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <div class="stat-num">3+</div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">15+</div>
+    <div class="stat-label">Global Brands</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">3.3만+</div>
+    <div class="stat-label">Event Visitors</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">20억+</div>
+    <div class="stat-label">Sales Generated</div>
+  </div>
+</div>
+
+<!-- COMPETENCIES -->
+<section id="competencies">
+  <p class="section-tag">Core Competencies</p>
+  <h2 class="section-title">핵심 역량</h2>
+  <div class="section-divider"></div>
+  <div class="comp-grid">
+    <div class="comp-card reveal">
+      <div class="comp-icon">📊</div>
+      <div class="comp-title">BTL 캠페인 기획 전문성</div>
+      <div class="comp-desc">프로모션, 컨퍼런스, 팝업, 오프라인 고객 관리 프로그램 등 BTL 전 분야의 전략 수립 및 실행 3년+</div>
+    </div>
+    <div class="comp-card reveal">
+      <div class="comp-icon">🌐</div>
+      <div class="comp-title">다양한 산업군 경험</div>
+      <div class="comp-desc">글로벌 자동차 브랜드, 소비재, IT 서비스 등 다양한 비즈니스 영역에서의 유연한 BTL 캠페인 운영</div>
+    </div>
+    <div class="comp-card reveal">
+      <div class="comp-icon">✍️</div>
+      <div class="comp-title">기획서 & 트렌드 분석</div>
+      <div class="comp-desc">시장·경쟁사 분석을 통한 인사이트 도출, 설득력 있는 기획서 작성 및 데이터 기반 전략 수립</div>
+    </div>
+    <div class="comp-card reveal">
+      <div class="comp-icon">🤝</div>
+      <div class="comp-title">이해관계자 커뮤니케이션</div>
+      <div class="comp-desc">국내외 클라이언트, 협력사, 내부 이해관계자와 원활한 커뮤니케이션으로 프로젝트 리드</div>
+    </div>
+    <div class="comp-card reveal">
+      <div class="comp-icon">🌏</div>
+      <div class="comp-title">비즈니스 영어</div>
+      <div class="comp-desc">영국 대학 졸업 및 카투사 복무 경험으로 글로벌 클라이언트와의 Written & Verbal Communication 자유롭게 가능 (IELTS 7.0 / TOEIC 920)</div>
+    </div>
+    <div class="comp-card reveal">
+      <div class="comp-icon">🏆</div>
+      <div class="comp-title">성과 중심 실행력</div>
+      <div class="comp-desc">KPI 초과 달성과 실질적인 세일즈 리드 창출을 지속적으로 증명해온 결과 지향형 실행 역량</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-tag">Work Experience</p>
+  <h2 class="section-title">경력 사항</h2>
+  <div class="section-divider"></div>
+  <div class="timeline">
+
+    <!-- 휘닉스 -->
+    <div class="tl-item reveal">
+      <div class="tl-period">2023.11 — 2025.10 · 2년</div>
+      <div class="tl-company">㈜휘닉스커뮤니케이션즈</div>
+      <div class="tl-role">CX팀 매니저</div>
+      <div class="tl-body">
+        쉐보레, GMC, 캐딜락, 동서식품, 캘러웨이, 온스타 등 다양한 글로벌 브랜드를
+        대상으로 BTL 전 분야의 고객 접점 마케팅 커뮤니케이션 전략을 수립하고 실행.
+      </div>
+      <ul class="tl-highlights">
+        <li>국내외 비상설 전시 및 경험 공간 기획·운영 전담</li>
+        <li>기획서 작성 및 클라이언트·협력사 커뮤니케이션 주도</li>
+        <li>트렌드 분석 및 인사이트 도출을 통한 차별화된 BTL 전략 구현</li>
+        <li>비즈니스 영어로 글로벌 클라이언트와 직접 커뮤니케이션 및 보고</li>
+      </ul>
+      <div class="achievement">🏅 GM Immersion Week — 전국 9개 지역 순회, <strong>3.3만명+ 방문 / 매출 20억+</strong></div>
+      <div class="achievement">🏅 ACDelco 브랜드 런칭 전시 — 방문객 KPI <strong>120% 달성</strong></div>
+      <div class="achievement">🏅 HOG Rally GMC SIERRA 부스 — 시승 후 구매의향 <strong>96% 상승</strong>, 현장 계약 4건(4억 매출)</div>
+      <div class="achievement">🏅 ACDelco E-mart Traders Road Show — 소셜 팔로워 <strong>113% 증가</strong></div>
+      <div class="tag-wrap">
+        <span class="tag">Chevrolet</span><span class="tag">GMC</span><span class="tag">Cadillac</span>
+        <span class="tag">Starbucks RTD</span><span class="tag">Callaway</span><span class="tag">ACDelco</span><span class="tag">OnStar</span>
+      </div>
+    </div>
+
+    <!-- 더브릿지 -->
+    <div class="tl-item reveal">
+      <div class="tl-period">2022.03 — 2022.09 · 6개월</div>
+      <div class="tl-company">더브릿지컨설팅</div>
+      <div class="tl-role">스포츠 컨설팅팀 인턴</div>
+      <div class="tl-body">
+        스포츠 정책 연구 프로젝트에서 국내외 사례 및 설문조사 데이터 분석을 통해
+        트렌드 인사이트를 도출하고 최종 보고서 작성 보조.
+      </div>
+      <ul class="tl-highlights">
+        <li>대한체육회 및 문화체육관광부 대상 정책 연구 지원</li>
+        <li>데이터 기반 기존 지표 개선 방안 제안</li>
+        <li>클라이언트·이해관계자와의 커뮤니케이션을 통한 자료 수집 및 현장 평가</li>
+      </ul>
+      <div class="tag-wrap">
+        <span class="tag">스포츠 정책</span><span class="tag">데이터 분석</span><span class="tag">리서치</span>
+      </div>
+    </div>
+
+    <!-- GPJ -->
+    <div class="tl-item reveal">
+      <div class="tl-period">2019.06 — 2020.05 · 1년</div>
+      <div class="tl-company">George P. Johnson Korea LLC</div>
+      <div class="tl-role">New Business팀 Event Specialist</div>
+      <div class="tl-body">
+        메르세데스 벤츠, AWS, Google Play, GENESYS 등 글로벌 브랜드의
+        전시, 프로모션, 컨퍼런스 등 BTL 이벤트 기획 및 실행.
+      </div>
+      <ul class="tl-highlights">
+        <li>Mercedes-Benz Digital Cube / EQ Power Cube 경험 공간 기획 참여</li>
+        <li>AWS Summit Online Korea 2020, Genesys G-Summit 2019 운영 보조</li>
+        <li>비즈니스 영어로 글로벌 클라이언트와 직접 커뮤니케이션</li>
+      </ul>
+      <div class="achievement">🏅 메르세데스 벤츠 경험 공간 — 총 <strong>4,500개+ 리드 확보 / KPI 초과 달성</strong></div>
+      <div class="tag-wrap">
+        <span class="tag">Mercedes-Benz</span><span class="tag">AWS</span>
+        <span class="tag">Google Play</span><span class="tag">Genesys</span><span class="tag">AT Kearney</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-tag">Featured Projects</p>
+  <h2 class="section-title">주요 프로젝트</h2>
+  <div class="section-divider"></div>
+  <div class="proj-grid">
+
+    <div class="proj-card reveal">
+      <div class="proj-header">
+        <div>
+          <div class="proj-brand">GM Korea · 2024</div>
+          <div class="proj-name">GM Immersion Week</div>
+        </div>
+        <div class="proj-icon">🚗</div>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">전국 9개 지역 순회 팝업 전시. 지역별 타겟에 맞춘 기획·운영으로 고객 접점 극대화 및 세일즈 리드 창출.</p>
+        <div class="proj-kpi">
+          <span class="kpi-badge">방문객 3.3만명+</span>
+          <span class="kpi-badge">매출 20억+</span>
+          <span class="kpi-badge">전국 9개 지역</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-header">
+        <div>
+          <div class="proj-brand">GM Korea · 2023</div>
+          <div class="proj-name">ACDelco 브랜드 런칭 전시</div>
+        </div>
+        <div class="proj-icon">⚙️</div>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">서울모빌리티쇼에서 115년 역사의 ACDelco를 한국 시장에 성공적으로 런칭. 방문객 KPI를 초과 달성.</p>
+        <div class="proj-kpi">
+          <span class="kpi-badge">KPI 120% 달성</span>
+          <span class="kpi-badge">2023 서울모빌리티쇼</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-header">
+        <div>
+          <div class="proj-brand">GMC · 2024</div>
+          <div class="proj-name">Korea National HOG Rally</div>
+        </div>
+        <div class="proj-icon">🏍️</div>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">GMC SIERRA 부스 기획. 바이크 유저 타겟 경험 공간 운영으로 높은 구매 전환율과 현장 계약 달성.</p>
+        <div class="proj-kpi">
+          <span class="kpi-badge">구매의향 96% 상승</span>
+          <span class="kpi-badge">현장 계약 4건</span>
+          <span class="kpi-badge">매출 4억</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-header">
+        <div>
+          <div class="proj-brand">동서식품 · 2024</div>
+          <div class="proj-name">Starbucks RTD 20주년 캠페인</div>
+        </div>
+        <div class="proj-icon">☕</div>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">VIP 기념 이벤트 및 고객 대상 모멘텀백 증정 이벤트를 포함한 대규모 프로모션 기획 및 운영.</p>
+        <div class="proj-kpi">
+          <span class="kpi-badge">VIP 이벤트 기획</span>
+          <span class="kpi-badge">대규모 프로모션</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-header">
+        <div>
+          <div class="proj-brand">ACDelco · 2024</div>
+          <div class="proj-name">E-mart Traders Road Show</div>
+        </div>
+        <div class="proj-icon">🛒</div>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">오프라인 유통 채널 개척을 위한 판매형 팝업 프로모션 기획 및 운영. 소셜 채널 성장 및 현장 판매 달성.</p>
+        <div class="proj-kpi">
+          <span class="kpi-badge">소셜 팔로워 113%↑</span>
+          <span class="kpi-badge">현장 판매 950만원</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-header">
+        <div>
+          <div class="proj-brand">Mercedes-Benz · 2019~2020</div>
+          <div class="proj-name">Digital Cube & EQ Power Cube</div>
+        </div>
+        <div class="proj-icon">⭐</div>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">브랜드 비전을 제시하는 몰입형 경험 공간 기획으로 대규모 세일즈 리드 창출. KPI를 초과 달성.</p>
+        <div class="proj-kpi">
+          <span class="kpi-badge">리드 4,500건+</span>
+          <span class="kpi-badge">KPI 초과 달성</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION & MISC -->
+<section id="education">
+  <p class="section-tag">Education & Credentials</p>
+  <h2 class="section-title">학력 및 자격</h2>
+  <div class="section-divider"></div>
+  <div class="edu-grid">
+    <div>
+      <div class="edu-card reveal" style="margin-bottom:1.2rem">
+        <div class="edu-year">2017.10 — 2023.07</div>
+        <div class="edu-school">Loughborough University</div>
+        <div class="edu-major">Sport Management (스포츠경영) 학사 · 영국</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2012.03 — 2015.02</div>
+        <div class="edu-school">경기고등학교</div>
+        <div class="edu-major">졸업</div>
+      </div>
+    </div>
+    <div>
+      <ul class="misc-list">
+        <li class="reveal">
+          <span class="misc-icon">🇬🇧</span>
+          <div class="misc-text">
+            <strong>영어 — Business Level</strong>
+            <span>IELTS 7.0 (2017) / TOEIC 920 (2019) · 영국 대학 졸업 및 카투사 복무</span>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="misc-icon">🪖</span>
+          <div class="misc-text">
+            <strong>대한민국 육군 (카투사) 병장 만기 제대</strong>
+            <span>주한미8군 한국군지원단 · 2020.09 — 2022.03</span>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="misc-icon">📋</span>
+          <div class="misc-text">
+            <strong>MOS PowerPoint 2016</strong>
+            <span>Microsoft Office Specialist</span>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="misc-icon">🚗</span>
+          <div class="misc-text">
+            <strong>운전면허증 2종 보통</strong>
+            <span>도로교통공단</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- AWARDS -->
+  <div style="margin-top:3rem">
+    <p class="section-tag">Awards</p>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--navy);margin-bottom:1.5rem">수상 내역</h3>
+    <div class="awards-grid">
+      <div class="award-card reveal">
+        <div class="award-medal">🥇</div>
+        <div>
+          <div class="award-title">사내 AI PT 경연 1등</div>
+          <div class="award-meta">㈜휘닉스커뮤니케이션즈 · 2025.09</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-medal">🥇</div>
+        <div>
+          <div class="award-title">사내 PT 경연 1등</div>
+          <div class="award-meta">㈜휘닉스커뮤니케이션즈 · 2024.09</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-medal">🎖️</div>
+        <div>
+          <div class="award-title">모범카투사 여단장 표창</div>
+          <div class="award-meta">주한미8군 한국군지원단 · 2021.10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-tag">Get in Touch</p>
+  <h2 class="section-title">연락처</h2>
+  <p class="contact-desc">글로벌 브랜드의 BTL 캠페인 기획, IMC 전략, 오프라인 이벤트 운영에 관한 협업 문의를 환영합니다.</p>
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/davidhojunchang/" target="_blank" class="contact-btn contact-btn-li">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="mailto:tmxoflr@gmail.com" class="contact-btn contact-btn-mail">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+      tmxoflr@gmail.com
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 David Chang (장호준) · BTL & IMC Marketing Specialist
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
